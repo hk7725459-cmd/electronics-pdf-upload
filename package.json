@@ -1,0 +1,14 @@
+{
+  "name": "electronics-pdf-upload",
+  "version": "1.0.0",
+  "description": "Electronics PDF upload application with Node.js and Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}
