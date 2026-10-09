@@ -193,3 +193,19 @@ function formatBytes(bytes) {
 }
 
 renderDocuments();
+
+const cards = document.querySelectorAll(".pdf-card, .upload-panel");
+cards.forEach((card) => {
+  card.addEventListener("pointermove", (event) => {
+    const rect = card.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    card.style.setProperty("--mx", `${x}px`);
+    card.style.setProperty("--my", `${y}px`);
+    card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(103,232,249,0.10), rgba(16,25,40,0.82) 28%)`;
+  });
+
+  card.addEventListener("pointerleave", () => {
+    card.style.background = "rgba(16, 25, 40, 0.82)";
+  });
+});
