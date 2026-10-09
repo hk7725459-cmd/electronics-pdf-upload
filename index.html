@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ElectroDocs | Electronics PDF Library</title>
+    <meta
+      name="description"
+      content="Upload, organize, and preview electronics-related PDF documents such as datasheets, schematics, manuals, and circuit notes."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-icon">E</div>
+          <div>
+            <p class="eyebrow">Electronics PDF Hub</p>
+            <h1>ElectroDocs</h1>
+          </div>
+        </div>
+        <nav class="topnav">
+          <a href="#upload">Upload</a>
+          <a href="#library">Library</a>
+          <a href="#about">About</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="section-tag">Smart document storage</p>
+            <h2>Keep all your electronics PDFs in one organized place.</h2>
+            <p>
+              Upload datasheets, schematics, service manuals, and circuit notes.
+              Categorize every document and preview PDFs instantly from your browser.
+            </p>
+            <div class="hero-stats">
+              <div>
+                <strong id="uploaded-count">0</strong>
+                <span>files uploaded</span>
+              </div>
+              <div>
+                <strong>24/7</strong>
+                <span>document access</span>
+              </div>
+              <div>
+                <strong>4</strong>
+                <span>document types</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="upload-panel" id="upload">
+            <form id="pdf-form" class="upload-form">
+              <div class="form-head">
+                <h3>Upload PDF</h3>
+                <span class="status-pill" id="upload-status">Ready</span>
+              </div>
+
+              <label class="field">
+                <span>Document title</span>
+                <input type="text" id="document-title" placeholder="e.g. LM317 regulator datasheet" required />
+              </label>
+
+              <label class="field">
+                <span>Category</span>
+                <select id="document-category">
+                  <option value="Datasheet">Datasheet</option>
+                  <option value="Circuit Diagram">Circuit Diagram</option>
+                  <option value="Service Manual">Service Manual</option>
+                  <option value="Component Notes">Component Notes</option>
+                  <option value="Project Report">Project Report</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Short description</span>
+                <textarea id="document-description" rows="3" placeholder="What is this document about?"></textarea>
+              </label>
+
+              <label class="dropzone" for="pdf-input">
+                <input type="file" id="pdf-input" accept="application/pdf" required />
+                <div class="dropzone-content">
+                  <span class="drop-icon">⬆</span>
+                  <strong>Choose a PDF file</strong>
+                  <small>or drag and drop it here</small>
+                </div>
+              </label>
+
+              <div class="file-name" id="selected-file-name">No file selected</div>
+
+              <button type="submit" class="primary-btn">Upload document</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="library" id="library">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">Your library</p>
+              <h3>Uploaded electronics documents</h3>
+            </div>
+            <button class="secondary-btn" id="clear-all" type="button">Clear all</button>
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <div class="empty-icon">📄</div>
+            <h4>No PDFs uploaded yet</h4>
+            <p>Start by adding a datasheet, circuit diagram, or technical manual.</p>
+          </div>
+
+          <div id="pdf-grid" class="pdf-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="about" id="about">
+          <div class="about-card">
+            <p class="section-tag">Why it works</p>
+            <h3>Built for electronics research and engineering work.</h3>
+            <ul>
+              <li>Store circuit diagrams and schematic PDFs</li>
+              <li>Organize by category for quick access</li>
+              <li>Open and review documents directly in the browser</li>
+              <li>Keep your project notes attached to each file</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="pdf-card-template">
+      <article class="pdf-card">
+        <div class="pdf-preview">
+          <span class="pdf-badge">PDF</span>
+          <div class="preview-icon">📘</div>
+        </div>
+        <div class="pdf-content">
+          <div class="pdf-header-row">
+            <h4 class="pdf-title"></h4>
+            <button class="remove-btn" type="button" aria-label="Remove document">×</button>
+          </div>
+          <p class="pdf-category"></p>
+          <p class="pdf-description"></p>
+          <div class="pdf-meta">
+            <span class="pdf-date"></span>
+            <span class="pdf-size"></span>
+          </div>
+          <div class="pdf-actions">
+            <a class="view-btn" href="#" target="_blank" rel="noopener noreferrer">Open PDF</a>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
