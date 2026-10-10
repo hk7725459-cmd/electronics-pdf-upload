@@ -72,7 +72,12 @@ app.get("/api/files", (req, res) => {
 });
 
 app.post("/api/upload", upload.single("pdf"), (req, res) => {
+  console.log("Upload endpoint hit");
+  console.log("File:", req.file);
+  console.log("Body:", req.body);
+
   if (!req.file) {
+    console.log("No file uploaded");
     return res.status(400).json({ message: "No PDF uploaded" });
   }
 
@@ -96,6 +101,7 @@ app.post("/api/upload", upload.single("pdf"), (req, res) => {
   docs.unshift(doc);
   writeMetadata(docs);
 
+  console.log("File uploaded successfully:", doc);
   res.status(201).json(doc);
 });
 
@@ -133,6 +139,7 @@ app.delete("/api/files", (req, res) => {
 });
 
 app.use((error, req, res, next) => {
+  console.error("Error:", error);
   if (error instanceof multer.MulterError || error.message === "Only PDF files are allowed") {
     return res.status(400).json({ message: error.message || "Upload failed" });
   }
