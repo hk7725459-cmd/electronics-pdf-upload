@@ -1,14 +1,22 @@
 {
-  "name": "electronics-pdf-upload",
-  "version": "1.0.0",
-  "description": "Electronics PDF upload application with Node.js and Express",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+  "port": 3000,
+  "developerAuth": {
+    "enabled": true,
+    "required": true,
+    "keyHeader": "x-admin-key",
+    "alternateKeyHeader": "x-developer-key",
+    "bearerTokenPrefix": "Bearer",
+    "secretKey": "change-this-secret-key"
   },
-  "dependencies": {
-    "express": "^4.21.2",
-    "multer": "^1.4.5-lts.1"
+  "upload": {
+    "allowedMimeTypes": ["application/pdf"],
+    "maxFileSizeMb": 20,
+    "storageFolder": "uploads",
+    "metadataFile": "data/files.json"
+  },
+  "security": {
+    "blockPublicUpload": true,
+    "allowAnonymousRead": true,
+    "allowAnonymousDelete": false
   }
 }
